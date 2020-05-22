@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SHOW_ERROR, HIDE_ERROR } from "../types"
+import { LOGIN, LOGOUT, SHOW_ERROR_ALERT, HIDE_ERROR_ALERT, SAVE_AUTH } from "../types"
 
 const initialState = {
     isAuth: false,
@@ -13,10 +13,12 @@ export const authReducer = (state = initialState, action) => {
             return {...state, isAuth: true, token: action.payload}
         case LOGOUT:
             return {...state, isAuth: false, token: ''}
-        case SHOW_ERROR:
+        case SHOW_ERROR_ALERT:
             return {...state, errorAuth: true}
-        case HIDE_ERROR:
+        case HIDE_ERROR_ALERT:
             return {...state, errorAuth: false}
+        case SAVE_AUTH:
+            return {...state, isAuth: true, errorAuth: false, token: action.payload}
         default:
             return state
     }

@@ -14,6 +14,7 @@ const store = createStore(rootReducer, compose(
 ));
 
 const app = (
+  
   <Provider store={store}>
     <React.StrictMode>
       <App />

@@ -1,4 +1,4 @@
-import { LOGIN } from "./types"
+import { LOGIN, SHOW_ERROR_ALERT, HIDE_ERROR_ALERT, SAVE_AUTH } from "./types"
 
 
 export const userLoginFetch = user => {
@@ -13,12 +13,29 @@ export const userLoginFetch = user => {
             })
             .then(resp => resp.json())
             .then(data => {
-              if (data) 
+              if (data.token) 
               {
                 localStorage.setItem("token", data.token);
                 console.log(data.token);
+                dispatch({type: HIDE_ERROR_ALERT});
                 dispatch({type: LOGIN, payload: data.token});
+              }
+              else 
+              {
+                dispatch({type: SHOW_ERROR_ALERT});
               }
         })
     }
+}
+
+export const getProfile = () => 
+{
+  return dispatch => 
+  {
+    if(localStorage.getItem('token'))
+    {
+      let token = localStorage.getItem('token');
+      dispatch({type: SAVE_AUTH, payload: token});
+    }
+  }
 }

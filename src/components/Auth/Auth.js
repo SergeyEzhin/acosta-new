@@ -23,6 +23,7 @@ class Auth extends Component {
 
     render()
     {
+        console.log(this.props);
         return (
             <div className="container pt-4">
                 <h1 className="text-center">Авторизация</h1>
@@ -61,12 +62,12 @@ class Auth extends Component {
                         />
                     </div>
                 </form>
-                {/* {props.errorAuth
+                {this.props.errorAuth
                     ?
                     <div className="alert alert-danger" role="alert">
                         Неверно указаны учетные данные!
                     </div>
-                    : null} */}
+                    : null}
             </div>
         )
 
@@ -76,5 +77,11 @@ class Auth extends Component {
 const mapDispatchToProps = dispatch => ({
     userLoginFetch: userInfo => dispatch(userLoginFetch(userInfo))
 });
+
+const mapStateToProps = state => ({
+    errorAuth: state.auth.errorAuth
+})
+
+
   
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
