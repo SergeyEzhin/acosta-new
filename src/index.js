@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { Provider } from 'react-redux';
+
+import {Provider, ReactReduxContext} from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, compose, applyMiddleware } from 'redux';
-import { rootReducer } from './redux/reducers/rootReducer'
+import {createStore, compose, applyMiddleware} from 'redux';
+import {routerMiddleware} from 'connected-react-router';
+import rootReducer from './redux/reducers/rootReducer';
+import history from './history';
+
 import * as serviceWorker from './serviceWorker';
 import './index.scss';
 
-const store = createStore(rootReducer, compose(
+// const history = createBrowserHistory({basename: '/auth'});
+
+const store = createStore(rootReducer(history), compose(
+  applyMiddleware(routerMiddleware(history)),
   applyMiddleware(thunk),
+  // applyMiddleware(redirect),
+  // applyMiddleware(createLogger()),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
@@ -17,7 +26,7 @@ const app = (
   
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <App history={history} />
     </React.StrictMode>
   </Provider>
 )

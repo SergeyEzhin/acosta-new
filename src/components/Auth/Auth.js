@@ -17,8 +17,8 @@ class Auth extends Component {
       }
     
     handleSubmit = event => {
-        event.preventDefault()
-        this.props.userLoginFetch(this.state)
+        event.preventDefault();
+        this.props.userLoginFetch(this.state);
     }
 
     render()

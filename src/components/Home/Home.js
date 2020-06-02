@@ -2,7 +2,7 @@ import React from 'react';
 import './Home.scss';
 import {connect} from 'react-redux';
 
-export const Home = () =>
+const Home = () =>
 {
   
     return (
@@ -13,12 +13,14 @@ export const Home = () =>
 }
 
 // const mapDispatchToProps = dispatch => ({
-//     userLoginFetch: userInfo => dispatch(userLoginFetch(userInfo))
+    
 // });
 
 // const mapStateToProps = state => ({
-//     errorAuth: state.auth.errorAuth
+  
 // })
+
+export default connect(null, null)(Home);
 
 
 
