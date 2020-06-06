@@ -10,21 +10,21 @@ class App extends React.Component
 {
   componentDidMount = () => 
   {
-    this.props.getProfile()
+    this.props.getProfile();
   }
 
   
   render()
   {
     // const {history} = this.props;
-    let {history, context} = this.props;
-
+    let {history} = this.props;
+    
     return (
       <React.Fragment>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route path='/' component={Auth} />
-            <Route path='/home' component={Home} />
+            <Route path='/auth' component={Auth} />
+            <Route path='/' component={Home} />
           </Switch>
         </ConnectedRouter>
       </React.Fragment>
@@ -35,5 +35,9 @@ class App extends React.Component
 const mapDispatchToProps = dispatch => ({
   getProfile: () => dispatch(getProfile())
 });
+
+// const mapStateToProps = state => ({
+//   data: state.data.data
+// });
 
 export default connect(null, mapDispatchToProps)(App);

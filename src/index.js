@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import {Provider, ReactReduxContext} from 'react-redux';
+import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {createStore, compose, applyMiddleware} from 'redux';
 import {routerMiddleware} from 'connected-react-router';
@@ -15,8 +15,7 @@ import './index.scss';
 // const history = createBrowserHistory({basename: '/auth'});
 
 const store = createStore(rootReducer(history), compose(
-  applyMiddleware(routerMiddleware(history)),
-  applyMiddleware(thunk),
+  applyMiddleware(routerMiddleware(history), thunk),
   // applyMiddleware(redirect),
   // applyMiddleware(createLogger()),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

@@ -26,7 +26,7 @@ class Auth extends Component {
         console.log(this.props);
         return (
             <div className="container pt-4">
-                <h1 className="text-center">Авторизация</h1>
+                <h1 className="text-center">Login</h1>
                 <form id="auth" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="login-auth">Логин</label>
