@@ -2,52 +2,6 @@ import { LOGIN, SHOW_ERROR_ALERT, HIDE_ERROR_ALERT, SAVE_AUTH, LOGOUT, FETCH_DAT
 import { push } from 'connected-react-router'
 
 
-export const userLoginFetch = user => {
-    console.log(push);
-    return dispatch => {
-        console.log(user)
-        return fetch('http://acosta.r52.ru/api/api-token-auth/', {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-            })
-            .then(resp => resp.json())
-            .then(data => {
-              if (data.token) 
-              {
-                // dispatch({});
-                localStorage.setItem("token", data.token);
-                console.log(data.token);
-                dispatch({type: HIDE_ERROR_ALERT});
-                dispatch({type: LOGIN, payload: data.token});  
-                dispatch(push('/'));
-              }
-              else 
-              {
-                dispatch({type: SHOW_ERROR_ALERT});
-              }
-        })
-    }
-}
-
-export const getProfile = () => 
-{
-  return dispatch => 
-  {
-    if(localStorage.getItem('token'))
-    {
-      dispatch(push('/'));
-      let token = localStorage.getItem('token');
-      dispatch({type: SAVE_AUTH, payload: token});
-    }
-    else 
-    {
-      dispatch(push('/auth'));
-    }
-  }
-}
 
 export const getData = () => 
 {
@@ -55,7 +9,8 @@ export const getData = () =>
     if(localStorage.getItem('data'))
     {
       let data = localStorage.getItem('data');
-      dispatch({type: SAVE_DATA, payload: JSON.parse(data)});
+      data = JSON.parse(data);
+      dispatch({type: SAVE_DATA, payload: data});
     }
     else 
     {
@@ -74,10 +29,56 @@ export const getData = () =>
       {
         dispatch({type: FETCH_DATA, payload: data});
         localStorage.setItem('data', JSON.stringify(data));
-        console.log(data)
-        // return data;
       });
     }
+  }
+}
+
+export const getProfile = () => 
+{
+  return dispatch => 
+  {
+    if(localStorage.getItem('token'))
+    {
+      dispatch(getData());
+      let token = localStorage.getItem('token');
+      dispatch({type: SAVE_AUTH, payload: token});
+      dispatch(push('/')); 
+    }
+    else 
+    {
+      dispatch(push('/auth'));
+    }
+  }
+}
+
+export const userLoginFetch = user => {
+  console.log(push);
+  return dispatch => {
+      console.log(user)
+      return fetch('http://acosta.r52.ru/api/api-token-auth/', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+          })
+          .then(resp => resp.json())
+          .then(data => {
+            if (data.token) 
+            {
+              // dispatch({});
+              localStorage.setItem("token", data.token);
+              dispatch(getProfile());
+              dispatch({type: HIDE_ERROR_ALERT});
+              dispatch({type: LOGIN, payload: data.token});  
+              dispatch(push('/'));
+            }
+            else 
+            {
+              dispatch({type: SHOW_ERROR_ALERT});
+            }
+      })
   }
 }
 

@@ -8,7 +8,7 @@ import {ConnectedRouter} from 'connected-react-router';
 
 class App extends React.Component 
 {
-  componentDidMount = () => 
+  componentWillMount = () => 
   {
     this.props.getProfile();
   }
