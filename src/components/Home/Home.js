@@ -3,33 +3,22 @@ import './Home.scss';
 import {connect} from 'react-redux';
 import { userLogout, getData } from '../../redux/actions';
 import {DayWeek} from '../DayWeek/DayWeek';
+import {Loader} from '../../ui/Loader/Loader';
 
 class Home extends React.Component
 {
-    // constructor(props) 
-    // {
-    //     super(props);
-    //     this.state = {data: this.props.getData()};
-    
-    // }
-
-    // componentWillMount()
-    // {
-    //     this.props.getData();
-    // }
-  
     render()
     {
-        // console.log(this.props.data);
+        console.log(this.props.data);
         let data = this.props.data;
 
         if(data)
         {
             return (
-                <div className="container pt-4">
+                <div className="main container pt-4">
                     <h1 className="text-center">Home Page</h1>
                     <button type="button" className="btn btn-primary" onClick={this.props.userLogout}>Выйти</button>
-                    <div className="pt-3">
+                    <div className="pt-3 content">
                         {
                             data.map((elem, index) => {
                                 if(elem.outlets.length === 0)
@@ -40,15 +29,14 @@ class Home extends React.Component
                                     <DayWeek elem={elem} index={index} key={elem.id} />
                                 )
                             })
-                            
-                        }
+                        }    
                     </div>
                 </div>
             )
         }
         else 
         {
-            return null;
+            return <Loader />
         }
     }
 }

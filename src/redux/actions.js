@@ -1,6 +1,5 @@
 import { LOGIN, SHOW_ERROR_ALERT, HIDE_ERROR_ALERT, SAVE_AUTH, LOGOUT, FETCH_DATA, CLEAR_DATA, SAVE_DATA} from "./types";
-import { push } from 'connected-react-router'
-
+import { push } from 'connected-react-router';
 
 
 export const getData = () => 
@@ -82,6 +81,11 @@ export const userLoginFetch = user => {
   }
 }
 
+export const toProjects = (path) => {
+  return dispatch => {
+    dispatch(push(path));
+  }
+}
 
 export const userLogout = () => 
 {
