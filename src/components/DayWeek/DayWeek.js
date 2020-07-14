@@ -4,9 +4,7 @@ import CardStore from '../CardStore/CardStore';
 
 export const DayWeek = ({ elem }) => 
 {
-
     let arrayCardStore = elem.outlets;
-    let projects = elem.projects;
 
     return (
         <div className="block-day-week">
@@ -15,7 +13,7 @@ export const DayWeek = ({ elem }) =>
                 {
                     arrayCardStore.map((elem, index) => {
                         return (
-                            <CardStore elem={elem} key={index} id={elem.id} projects={projects} />
+                            <CardStore elem={elem} key={index} id={elem.id} />
                         )
                     })
                 }
@@ -23,3 +21,5 @@ export const DayWeek = ({ elem }) =>
         </div>
     )
 }
+
+

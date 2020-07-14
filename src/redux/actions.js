@@ -4,7 +4,8 @@ import { push } from 'connected-react-router';
 
 export const getData = () => 
 {
-  return dispatch => {
+  return dispatch => 
+  {
     if(localStorage.getItem('data'))
     {
       let data = localStorage.getItem('data');
@@ -15,7 +16,8 @@ export const getData = () =>
     {
       let token = localStorage.getItem('token');
 
-      return fetch('http://acosta.r52.ru/api/getSchedule/', {
+      return fetch('http://acosta.r52.ru/api/getSchedule/', 
+      {
         method: 'GET',
         headers: {
             'Authorization': 'JWT ' + token,
@@ -37,55 +39,43 @@ export const getProfile = () =>
 {
   return dispatch => 
   {
-    if(localStorage.getItem('token'))
-    {
-      dispatch(getData());
-      let token = localStorage.getItem('token');
-      dispatch({type: SAVE_AUTH, payload: token});
-      dispatch(push('/')); 
-    }
-    else 
-    {
-      dispatch(push('/auth'));
-    }
+    dispatch(getData());
+    let token = localStorage.getItem('token');
+    dispatch({type: SAVE_AUTH, payload: token});
   }
 }
 
-export const userLoginFetch = user => {
-  console.log(push);
-  return dispatch => {
-      console.log(user)
-      return fetch('http://acosta.r52.ru/api/api-token-auth/', {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(user)
-          })
-          .then(resp => resp.json())
-          .then(data => {
-            if (data.token) 
-            {
-              // dispatch({});
-              localStorage.setItem("token", data.token);
-              dispatch(getProfile());
-              dispatch({type: HIDE_ERROR_ALERT});
-              dispatch({type: LOGIN, payload: data.token});  
-              dispatch(push('/'));
-            }
-            else 
-            {
-              dispatch({type: SHOW_ERROR_ALERT});
-            }
+export const userLoginFetch = user => 
+{
+  return dispatch => 
+  {
+    return fetch('http://acosta.r52.ru/api/api-token-auth/', 
+    {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
       })
+      .then(resp => resp.json())
+      .then(data => 
+      {
+        if (data.token) 
+        {
+          localStorage.setItem("token", data.token);
+          dispatch(getProfile());
+          dispatch({type: HIDE_ERROR_ALERT});
+          dispatch({type: LOGIN, payload: data.token});  
+          dispatch(push('/'));
+        }
+        else 
+        {
+          dispatch({type: SHOW_ERROR_ALERT});
+        }
+    });
   }
 }
 
-export const toProjects = (path) => {
-  return dispatch => {
-    dispatch(push(path));
-  }
-}
 
 export const userLogout = () => 
 {

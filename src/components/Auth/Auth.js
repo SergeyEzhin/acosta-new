@@ -23,7 +23,6 @@ class Auth extends Component {
 
     render()
     {
-        console.log(this.props);
         return (
             <div className="container pt-4">
                 <h1 className="text-center">Login</h1>
@@ -83,5 +82,4 @@ const mapStateToProps = state => ({
 })
 
 
-  
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

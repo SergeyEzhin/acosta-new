@@ -1,7 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {getProfile} from './redux/actions';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 import Home from './components/Home/Home';
 import {ConnectedRouter} from 'connected-react-router';
@@ -9,15 +7,8 @@ import Projects from './components/Projects/Projects';
 
 class App extends React.Component 
 {
-  componentWillMount = () => 
+  render() 
   {
-    this.props.getProfile();
-  }
-
-  
-  render()
-  {
-    // const {history} = this.props;
     let {history} = this.props;
     
     return (
@@ -34,12 +25,4 @@ class App extends React.Component
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  getProfile: () => dispatch(getProfile())
-});
-
-// const mapStateToProps = state => ({
-//   data: state.data.data
-// });
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

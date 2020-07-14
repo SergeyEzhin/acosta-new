@@ -1,26 +1,34 @@
 import React from 'react';
 import './Home.scss';
 import {connect} from 'react-redux';
-import { userLogout, getData } from '../../redux/actions';
+import { userLogout, getProfile } from '../../redux/actions';
 import {DayWeek} from '../DayWeek/DayWeek';
 import {Loader} from '../../ui/Loader/Loader';
+import BreadcrumbsWrapper from '../../ui/Breadcrumbs/Breadcrumbs';
 
-class Home extends React.Component
+class Home extends React.PureComponent
 {
+    componentDidMount = () => 
+    {
+        this.props.getProfile();
+    }
+
     render()
     {
-        console.log(this.props.data);
-        let data = this.props.data;
-
-        if(data)
+        if(this.props.data)
         {
+            console.log(this.props.data);
+
             return (
                 <div className="main container pt-4">
                     <h1 className="text-center">Home Page</h1>
                     <button type="button" className="btn btn-primary" onClick={this.props.userLogout}>Выйти</button>
+                    {/* <div className="pt-3">
+                       <BreadcrumbsWrapper />
+                    </div> */}
                     <div className="pt-3 content">
                         {
-                            data.map((elem, index) => {
+                            (this.props.data).map((elem, index) => {
                                 if(elem.outlets.length === 0)
                                 {
                                     return null;
@@ -43,7 +51,7 @@ class Home extends React.Component
 
 const mapDispatchToProps = dispatch => ({
     userLogout: () => dispatch(userLogout()),
-    getData: () => dispatch(getData())
+    getProfile: () => dispatch(getProfile())
 });
 
 const mapStateToProps = state => ({

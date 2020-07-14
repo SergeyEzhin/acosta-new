@@ -1,10 +1,10 @@
 import React from "react";
-import {withRouter} from 'react-router-dom'
 import Project from '../Project/Project';
+import {Loader} from '../../ui/Loader/Loader';
 
 const Projects = (props) => {
 
-    console.log(props);
+    // console.log(props);
     let projects = props.location.state;
 
     if(projects.length)
@@ -27,9 +27,9 @@ const Projects = (props) => {
     }
     else 
     {
-        return null;
+        return <Loader />
     }
+    
 }
 
-// export default withRouter(Projects);
 export default Projects;
