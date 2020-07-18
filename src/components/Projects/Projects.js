@@ -4,10 +4,9 @@ import {Loader} from '../../ui/Loader/Loader';
 
 const Projects = (props) => {
 
-    // console.log(props);
     let projects = props.location.state;
 
-    if(projects.length)
+    if(projects)
     {
         return (
             <div className="container pt-4">
@@ -33,3 +32,4 @@ const Projects = (props) => {
 }
 
 export default Projects;
+

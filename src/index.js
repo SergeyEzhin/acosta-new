@@ -16,8 +16,6 @@ import './index.scss';
 
 const store = createStore(rootReducer(history), compose(
   applyMiddleware(routerMiddleware(history), thunk),
-  // applyMiddleware(redirect),
-  // applyMiddleware(createLogger()),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
 

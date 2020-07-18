@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { userLogout, getProfile } from '../../redux/actions';
 import {DayWeek} from '../DayWeek/DayWeek';
 import {Loader} from '../../ui/Loader/Loader';
-import BreadcrumbsWrapper from '../../ui/Breadcrumbs/Breadcrumbs';
+// import BreadcrumbsWrapper from '../../ui/Breadcrumbs/Breadcrumbs';
 
 class Home extends React.PureComponent
 {
@@ -23,9 +23,6 @@ class Home extends React.PureComponent
                 <div className="main container pt-4">
                     <h1 className="text-center">Home Page</h1>
                     <button type="button" className="btn btn-primary" onClick={this.props.userLogout}>Выйти</button>
-                    {/* <div className="pt-3">
-                       <BreadcrumbsWrapper />
-                    </div> */}
                     <div className="pt-3 content">
                         {
                             (this.props.data).map((elem, index) => {

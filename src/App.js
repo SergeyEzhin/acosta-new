@@ -10,14 +10,16 @@ class App extends React.Component
   render() 
   {
     let {history} = this.props;
-    
+
     return (
       <React.Fragment>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route exact path='/auth' component={Auth} />
+            <Route path='/auth' component={Auth} />
             <Route exact path='/' component={Home} />
-            <Route exact path='/projects/:id' component={Projects} />
+            <Route path='/projects/:id' component={Projects} />
+            {/* <Route path="/goods/:id" component={Goods} />
+            <Route path="/report/:id" component={Report} /> */}
           </Switch>
         </ConnectedRouter>
       </React.Fragment>
