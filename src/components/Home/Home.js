@@ -6,7 +6,7 @@ import {DayWeek} from '../DayWeek/DayWeek';
 import {Loader} from '../../ui/Loader/Loader';
 // import BreadcrumbsWrapper from '../../ui/Breadcrumbs/Breadcrumbs';
 
-class Home extends React.PureComponent
+class Home extends React.Component
 {
     componentDidMount = () => 
     {

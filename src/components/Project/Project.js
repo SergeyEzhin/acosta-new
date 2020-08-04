@@ -19,8 +19,7 @@ const Project = ({elem, history, fields}) => {
                             history.push(
                             {
                                 pathname: '/goods/' + elem.id,
-                                state: elem.products, 
-                                fields
+                                state: {products: elem.products, fields}, 
                             });
                         }}>
                         Перейти к товарам
