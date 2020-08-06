@@ -2,9 +2,8 @@ import React from 'react';
 import './Home.scss';
 import {connect} from 'react-redux';
 import { userLogout, getProfile } from '../../redux/actions';
-import {DayWeek} from '../DayWeek/DayWeek';
+import {DayWeek} from '../../components/DayWeek/DayWeek';
 import {Loader} from '../../ui/Loader/Loader';
-// import BreadcrumbsWrapper from '../../ui/Breadcrumbs/Breadcrumbs';
 
 class Home extends React.Component
 {

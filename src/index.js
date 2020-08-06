@@ -12,8 +12,6 @@ import history from './history';
 import * as serviceWorker from './serviceWorker';
 import './index.scss';
 
-// const history = createBrowserHistory({basename: '/auth'});
-
 const store = createStore(rootReducer(history), compose(
   applyMiddleware(routerMiddleware(history), thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

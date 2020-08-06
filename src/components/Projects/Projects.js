@@ -1,6 +1,7 @@
 import React from "react";
 import Project from '../Project/Project';
 import {Loader} from '../../ui/Loader/Loader';
+import {FieldsContext} from '../FieldsContext/FieldsContext';
 
 const Projects = (props) => {
 
@@ -16,7 +17,9 @@ const Projects = (props) => {
                     projects.map((elem, index) => 
                     {
                         return (
-                            <Project elem={elem} key={index} id={elem.id} fields={elem.report_fields} />
+                            <FieldsContext.Provider value={{fields: elem.report_fields}} key={index}>
+                                <Project elem={elem} key={index} id={elem.id} />
+                            </FieldsContext.Provider>
                         )
                     })
                 }
