@@ -18,7 +18,8 @@ const Product = (props) => {
                         state: {
                             planFace: props.planFace, 
                             planShelfNumber: props.planShelfNumber,
-                            fields: props.location.state.fields
+                            fields: props.location.state.fields,
+                            nameProduct: props.elem.name
                         }
                     });
                 }}>
