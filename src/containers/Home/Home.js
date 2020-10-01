@@ -14,9 +14,11 @@ class Home extends React.Component
 
     render()
     {
-        if(this.props.data)
+        let {data} = this.props;
+
+        if(data.length)
         {
-            console.log(this.props.data);
+            console.log(data);
 
             return (
                 <div className="main container pt-4">
@@ -24,7 +26,7 @@ class Home extends React.Component
                     <button type="button" className="btn btn-primary" onClick={this.props.userLogout}>Выйти</button>
                     <div className="pt-3 content">
                         {
-                            (this.props.data).map((elem, index) => {
+                            data.map((elem, index) => {
                                 if(elem.outlets.length === 0)
                                 {
                                     return null;
@@ -40,6 +42,7 @@ class Home extends React.Component
         }
         else 
         {
+            // console.log(data);
             return <Loader />
         }
     }

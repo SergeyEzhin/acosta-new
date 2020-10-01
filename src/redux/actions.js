@@ -18,7 +18,6 @@ export const getData = () =>
 
       return fetch('http://acosta.r52.ru/api/getSchedule/', 
       {
-        method: 'GET',
         headers: {
             'Authorization': 'JWT ' + token,
             'Content-Type': 'application/json'
